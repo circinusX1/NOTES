@@ -6,8 +6,9 @@ bone$ git pull
 bone$ ./LCD-on.sh  -- did not work
 sudo /opt/scripts/tools/update_kernel.sh -- nexy sollution
 
-### OS BOOT MANAGER (UEFI) - ubuntu sruck in grub
-##### sollution thet worked for me
+### OS BOOT MANAGER (UEFI) - ubuntu stuck in grub prompt
+
+##### sollution worked for me
 ```
 1462  [ -d /sys/firmware/efi ] && echo "Installed in UEFI mode" || echo "Installed in Legacy mode"
       Installed in UEFI mode
