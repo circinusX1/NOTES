@@ -68,7 +68,27 @@ git format-patch -1
 ```
     * and kep using your dtb
 
-    
+Boot up and
+
+```
+root@imx8mm-marius:/sys/class/remoteproc/remoteproc0# tree
+.
+|-- coredump
+|-- device -> ../../../imx8mm-cm4
+|-- firmware
+|-- name
+|-- power
+|   |-- autosuspend_delay_ms
+|   |-- control
+|   |-- runtime_active_time
+|   |-- runtime_status
+|   `-- runtime_suspended_time
+|-- recovery
+|-- state
+|-- subsystem -> ../../../../../class/remoteproc
+`-- uevent
+
+```    
 
 
 
