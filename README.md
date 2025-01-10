@@ -18,3 +18,60 @@ sudo /opt/scripts/tools/update_kernel.sh -- nexy sollution
  1466  sudo update-grub
  1467  sudo reboot
  ```
+
+#### YOCTO PATCH
+```
+git add .
+git commit -a -m "sd"
+git format-patch -1
+
+
+```
+#### M4 ENABLE FOR IMX8MM
+
+* if you have your imx8mm_yourboard.dts
+   *  include it at the top of the   imx8mm-evk-rpmsg.dts as
+ 
+```
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright 2019 NXP
+ */
+
+/dts-v1/;
+
+#include "mx8mm_yourboard.dts"
+
+
+/ {
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		m4_reserved: m4@0x80000000 {
+			no-map;
+			reg = <0 0x80000000 0 0x1000000>;
+		};
+
+```
+   * and use imx8mm-evk-rpmsg.dts.dtb instead
+
+#### or in your mx8mm_yourboard.dts file include the in the last line
+
+```
+&flexspi {
+	status = "disabled";
+};
+
+#include "imx8mm-evk-rpmsg.dts"
+```
+    * and kep using your dtb
+
+    
+
+
+
+
+
+
