@@ -30,7 +30,7 @@ git format-patch -1
 #### M4 ENABLE FOR IMX8MM
 
 * if you have your imx8mm_yourboard.dts
-   *  include it at the top of the   imx8mm-evk-rpmsg.dts as
+   *  include it at the top of the   imx8mm-evk-rpmsg.dts and replace current include *.dts
  
 ```
 // SPDX-License-Identifier: (GPL-2.0 OR MIT)
