@@ -91,7 +91,31 @@ root@imx8mm-marius:/sys/class/remoteproc/remoteproc0# tree
 ```    
 
 
+### uboot utils
+https://docs.embeddedts.com/U-boot_commands
 
+```
+ums x mmc y   < freescale
+load mmc 0:1 ${loadaddr} /boot/uImage
+
+load mmc 0:1 ${fdtaddr} /boot/imx6q-ts4900.dtb
+fdt addr ${fdtaddr}
+fdt print
+
+load mmc 0:1 ${loadaddr} /boot/custombinary
+go ${loadaddr}
+
+dhcp
+env set serverip 192.168.0.11
+nfs ${loadaddr} 192.168.0.11:/path/to/somefile
+
+
+load mmc 0:1 ${loadaddr} /boot/ubootscript
+source ${loadaddr}
+
+
+
+```
 
 
 
