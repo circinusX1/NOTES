@@ -8,7 +8,7 @@ device_user$     ssh -R localhost:7070:localhost:22 abc_user@abc.com
 
 ### on abc.com
 ```
-ssh -p 7070 abc_user@localhost
+abs-user$     ssh -p 7070 device_user@localhost
 ```
 
 
