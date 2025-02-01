@@ -1,4 +1,19 @@
-BBB Iot Buster Debian
+### reverse shell
+##### have a sercer abc.com
+##### have a device running linux behind a router localhost
+### on device under user device_user:
+```
+device_user$     ssh -R localhost:7070:localhost:22 abc_user@abc.com
+```
+
+### on abc.com
+```
+ssh -p 7070 abc_user@localhost
+```
+
+
+
+### BBB Iot Buster Debian
 activate HDMI
 
 bone$ cd /var/lib/cloud9/displays
