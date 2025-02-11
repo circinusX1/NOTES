@@ -1,3 +1,18 @@
+## dropbear to ssh key
+
+#### on dropbear machine
+```
+cd user/.ssh
+dropbearkey -t rsa -f ./id_dropbear # < this is the private key
+
+dropbearkey -y -f ./id_dropbear | grep "^ssh-rsa " > authorized_keys_fragment # take this fragment
+									      # to a server whenre to access
+
+
+```
+
+
+
 ### reverse shell
 ##### have a sercer abc.com
 ##### have a device running linux behind a router localhost
