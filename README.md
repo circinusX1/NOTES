@@ -1,3 +1,6 @@
+# make OS RO
+    echo u > /proc/sysrq-trigger
+
 ## dropbear to ssh key
 
 #### on dropbear machine
