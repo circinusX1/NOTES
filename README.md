@@ -1,3 +1,7 @@
+# nano arduino programmer
+USBAsp
+
+
 # make OS RO
     echo u > /proc/sysrq-trigger
 
