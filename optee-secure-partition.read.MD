@@ -1,6 +1,9 @@
 https://www.thegoodpenguin.co.uk/blog/secure-storage-with-i-mx-95-verdin-evk-using-trusted-keys-with-op-tee/
 
 
+https://wiki.st.com/stm32mpu/index.php?title=How_to_encrypt_a_disk_with_dm-crypt&oldid=101931
+
+
 1. Article purpose↑
 
 This article shows the steps to execute the dynamic file encryption on block device storage (like SD card, eMMC) with Linux®. It shows how to use "dmsetup" and "keyutils" tools in Linux® user space.
