@@ -1,3 +1,14 @@
+# QT creartor Step into so libraries source while debugging
+
+*  QT -> View Views Debugger Log, Command
+    * set solib-search-path \n:/path_to_where_the_so_lib_is_located
+
+
+
+
+
+
+
 # nano arduino programmer
 USBAsp
 
