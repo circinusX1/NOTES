@@ -4,8 +4,8 @@
     * set solib-search-path \n:/path_to_where_the_so_lib_is_located
 
 # gdb with coredump
-gdb -iex 'set sysroot /' application coredump
-thread apply all bt
+* gdb -iex 'set sysroot /' application coredump
+* thread apply all bt
 
 
 
