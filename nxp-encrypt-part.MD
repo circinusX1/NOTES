@@ -1,6 +1,8 @@
+
 # NXP How to encrypt partition
 
-# prerequisites
+### prerequisites
+-- --
 
 * HAB enabled, u-boot and kernel signed, Using Yocto abomination echosystem: 
    * https://dev.variscite.com/dart-mx8m-mini/mx8mm-yocto-scarthgap-6.6.52_2.2.0-v1.0/
