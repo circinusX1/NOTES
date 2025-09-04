@@ -1,5 +1,6 @@
 
-# NXP How to encrypt partition
+# iMX8, DM-Crypt with Trusted keys backed by CAAM
+### Reference: i.MX Linux Users guide.pdf
 
 ### prerequisites
 -- --
