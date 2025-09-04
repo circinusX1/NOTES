@@ -90,6 +90,39 @@ hexdump -C /dev/mapper/testenc
 
 ```
 
+# run every bootup
+#!/bin/bash
+
+readonly MNT_DIR="/encrypted_disk"
+readonly PART_TO_ENC=mmcblkp2  							# change with your partition
+readonly DEV_MPR_SEC="/dev/mapper/secured"
+readonly BLB_FILE=~/dmtrust_kn
+readonly ALGO='capi:cbc(aes)-plain'
+readonly BLOCKS=$(( $(lsblk -lb | grep ${PART_TO_ENC} | awk '{print $4}') / 512 ))
+readonly TABLE="0 ${BLOCKS} crypt ${ALGO} :32:trusted:dmtrust_kn 0 ${ICP_SEC_PART} 0 1 allow_discards"
+
+
+if [[ ! -f ${BLB_FILE}.blob ]];then
+	# first time
+    klog "Encrypting ${BLOCKS} blocks of: ${ICP_SEC_PART}"
+    readonly KEY="$(keyctl add trusted dmtrust_kn 'new 32' @s)"
+    keyctl pipe $KEY > ${BLB_FILE}.blob
+    if [[ ! -f ${BLB_FILE}.blob ]];then
+        exit 1
+    fi
+    chattr +i ${BLB_FILE}.blob
+    echo ${TABLE} | dmsetup create secured
+    echo ${TABLE} | dmsetup load secured
+    mkfs.ext4 -F ${DEV_MPR_SEC} -L secret
+    sync
+else
+	# every time
+    keyctl add trusted dmtrust_kn "load $(cat ${BLB_FILE}.blob)" @s
+    echo $TABLE | dmsetup create secured
+    echo $TABLE | dmsetup load secured
+fi
+mount -t ext4 ${DEV_MPR_SEC} ${MNT_DIR}
+
 
 
 ```
