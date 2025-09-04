@@ -78,13 +78,16 @@ modprobe trusted
 ### test it first
 ##### create a block file
 
+```
 DEV=/dev/loop0
 BLOCKS=20
 fallocate -l $((BLOCKS*512)) ./loop0.img
 losetup -P $DEV ./loop0.img
+```
 
 #### 1. encrypt, create blob, then enc masterkey@kernel+blob
 
+```
 KEYNAME=dm_test2
 KEY="$(keyctl add trusted $KEYNAME 'new 32' @s)"
 keyctl pipe $KEY >./$KEYNAME.blob
@@ -99,9 +102,8 @@ dd if=/dev/zero of=/dev/mapper/testenc || true
 echo "It works" 1<> /dev/mapper/testenc
 umount /mnt/testenc/
 dmsetup remove testenc
-
-
 ```
+
 #### 2. mount after boot 
    * Mount encrypted using mster key@ kernel + blob
       * reboot
@@ -119,9 +121,8 @@ losetup -P $DEV ./loop0.img
 echo $TABLE | dmsetup create testenc
 echo $TABLE | dmsetup load testenc
 hexdump -C /dev/mapper/testenc
-
-
 ```
+
 #### 3. Check if another dev can decrypt using blob and file 
 The step 1 should be performed on a device with HAB fuses burned and activated, like all fuses from below to be burnd.
 
@@ -178,4 +179,4 @@ mount -t ext4 ${DEV_MPR_SEC} ${MNT_DIR}
 
 ```
    
-
+Marius C, 2025
