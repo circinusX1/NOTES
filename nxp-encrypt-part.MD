@@ -36,6 +36,8 @@ CONFIG_CRYPTO_AES=y
 CONFIG_CRYPTO_CBC=m
 ```
 
+# CAAM TRUSTED
+
 *  bootup into iMX shell
 ```
 
