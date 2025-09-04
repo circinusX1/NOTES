@@ -41,15 +41,18 @@ CONFIG_CRYPTO_CBC=m
 *  bootup into iMX shell
 ```
 
-odprobe trusted
+modprobe trusted
 
-# create a block file
+### test it first
+##### create a block file
+
 DEV=/dev/loop0
 BLOCKS=20
 fallocate -l $((BLOCKS*512)) ./loop0.img
 losetup -P $DEV ./loop0.img
 
-# encrypt
+#### 1. encrypt, create blob, then enc masterkey@kernel+blob
+
 KEYNAME=dm_test2
 KEY="$(keyctl add trusted $KEYNAME 'new 32' @s)"
 keyctl pipe $KEY >./$KEYNAME.blob
@@ -67,8 +70,10 @@ dmsetup remove testenc
 
 
 ```
-   * reboot
-   * check it out 
+#### 2. mount after boot 
+   * Mount encrypted using mster key@ kernel + blob
+      * reboot
+      * Mount using the blob + masterkey@kernel  
 
 ```
 KEYNAME=dm_test2
@@ -85,8 +90,18 @@ hexdump -C /dev/mapper/testenc
 
 
 ```
-   * move to another macine the /$KEYNAME.blob and loop0.img
-   * scond procedure should not succeed
+#### 3. Check if another dev can decrypt using blob and file 
+
+   * move /$KEYNAME.blob and loop0.img to another machine or bootup from another media with a different kernel or un HAB-ed kernel
+   * Try to revive the key using the blob.
+      * Test ssucceded, we cannot decrypt.
+```
+keyctl add trusted $KEYNAME "load $(cat ./$KEYNAME.blob)" @s
+[   50.928421] caam_jr 30902000.jr: using insecure test key, enable HAB to use unique device key!
+[   50.937112] trusted_key: key_unseal failed (-74)
+add_key: Bad message
+
+```
 
 # encrypt a partition
 
