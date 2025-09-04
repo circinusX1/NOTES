@@ -92,6 +92,34 @@ hexdump -C /dev/mapper/testenc
 
 ```
 #### 3. Check if another dev can decrypt using blob and file 
+The step 1 should be performed on a device with HAB fuses burned and activated, like all fuses from below to be burnd.
+
+```
+# a uuu burnfuses.uuu/lst, replace fuses HEX values with yours from SRK_1_2_3_4_fuse.bin.u-boot-cmds
+uuu_version 1.4.149
+SDP: boot -f _flash.bin
+SDPV: delay 2000
+FB: ucmd fuse prog -y 6 0 0xDA6B9AD0
+FB: ucmd fuse prog -y 6 1 0xDC9B5501
+FB: ucmd fuse prog -y 6 2 0x93D10134
+FB: ucmd fuse prog -y 6 3 0x5CDC0DA3
+FB: ucmd fuse prog -y 7 0 0x100709F8
+FB: ucmd fuse prog -y 7 1 0xC00305A7
+FB: ucmd fuse prog -y 7 2 0x3E700DA2
+FB: ucmd fuse prog -y 7 3 0x00000000
+FB: Done
+
+```
+
+and
+
+```
+uuu_version 1.4.149
+FB: ucmd fuse prog -y 1 3 0x02000000
+# FB: ucmd fuse prog -y 1 3 0x200000   # to disable JTAG
+FB: Done
+```
+
 
    * move /$KEYNAME.blob and loop0.img to another machine or bootup from another media with a different kernel or un HAB-ed kernel
    * Try to revive the key using the blob.
