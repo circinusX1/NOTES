@@ -74,6 +74,7 @@ FB: Done
 ```
 
 modprobe trusted
+```
 
 ### test it first
 ##### create a block file
