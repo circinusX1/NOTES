@@ -108,7 +108,7 @@ umount /mnt/testenc/
 dmsetup remove testenc
 ```
 
-#### 2. mount after boot 
+#### 2. test after reboot 
    * Mount encrypted using mster key@ kernel + blob
       * reboot
       * Mount using the blob + masterkey@kernel  
