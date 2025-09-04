@@ -8,23 +8,26 @@
 * HAB enabled, u-boot and kernel signed, Using Yocto abomination echosystem: 
    * https://dev.variscite.com/dart-mx8m-mini/mx8mm-yocto-scarthgap-6.6.52_2.2.0-v1.0/
        * https://dev.variscite.com/dart-mx8m-mini/yocto/high-assurance-boot-mx8/
-   * u-boot messages hab status 0 events  
-   * FUSE burned for HAB
-   * Device closed
+   * u-boot messages hab_status 0 events
+      * Stop at uboot prompt and type hab_status
+      * There should be no events, then you should burn fuses 
+   * FUSES burned for HAB, see below
+   * Device closed, last fuse burned
+
 * Extra packages
    * local.conf
       * MACHINE_FEATURES:append = " optee"  
       * DISTRO_FEATURES:append = " optee"
       * IMAGE_INSTALL:append = " optee-os optee-test "
-   * your image bb
+   * your image.bb
       * CORE_IMAGE_EXTRA_INSTALL+="coreutils keyutils lvm2 e2fsprogs-mke2fs util-linux keyctl-caam"
-* Kernel config
+* Kernel config, 
    * linux-variscite_6_6.bbapend
 ```
 SRC_URI += " \
-    file://spectra-kernel.cfg \
+    file://my_kernel.cfg \
 "
-spectra-kernel.cfg
+my_kernel.cfg
 CONFIG_KEYS=y
 CONFIG_TRUSTED_KEYS=m
 CONFIG_TRUSTED_KEYS_CAAM=y
