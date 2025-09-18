@@ -162,9 +162,30 @@ nfs ${loadaddr} 192.168.0.11:/path/to/somefile
 load mmc 0:1 ${loadaddr} /boot/ubootscript
 source ${loadaddr}
 
-
-
 ```
 
+### qemu on ubuntu
 
+```
+sudo apt install --reinstall qemu-kvm qemu-utils libvirt-daemon-system libvirt-clients bridge-utils virt-manager
 
+sudo systemctl enable --now libvirtd
+sudo systemctl restart libvirtd
+
+```
+https://software.download.prss.microsoft.com/dbazure/Win11_24H2_English_x64.iso?t=718612c7-28e0-4d8b-8117-a18ce264eb5a&P1=1758204396&P2=601&P3=2&P4=oy7lCkt%2blNr%2fzSASBKzA6QnrnWJ8DXxAs13JQbHOdxT2eySoLeEg9yXgkucgnQ5wJF2dKkdYXQTEj8aPCFC%2fG503x0sGwHneSBSHPZqSPZYsiETvHmMafmqXmYdumjF49neZPSaUulm43me2rj5cIyjuo6Ib84rD93%2fdLl8cosrWiBdccqc0YFH2ifXMYg%2fjeBdd7H4zwTz%2f%2f8zlFsL%2buRP%2f43bo3lEZsYl0BTr0RSRfHEQA6xtKC%2bHN9TJedxP7nVKupFDQ%2bRaJuHviNgOOXTYByI%2fUElLyB51gHhHlcqtUm0TNBj%2fJG3iM34NuyhcyIZjNSy7iwmIZu46kAcVxFg%3d%3d
+
+#### disable exporation
+* serices client certificate disable
+* adming cmd
+    * slmgr -rearm 
+```
+#### display
+* on guest windows
+* https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.285-1/virtio-win-0.1.285.iso
+    * mount iso
+    * Control panel -> Display -> update driver -> select mounted sio drive usually E:
+* Restart Guest WINdows from power button menu while holding Shift Key
+* Should boot with TROUBLESHOOTING OPTION
+   * Troubleshoot->Advanced Options->Startup Settings
+   * Select 7 'Disable driver signature enforcement' 
