@@ -179,7 +179,7 @@ https://software.download.prss.microsoft.com/dbazure/Win11_24H2_English_x64.iso?
 * serices client certificate disable
 * adming cmd
     * slmgr -rearm 
-```
+
 #### display
 * on guest windows
 * https://fedorapeople.org/groups/virt/virtio-win/direct-downloads/archive-virtio/virtio-win-0.1.285-1/virtio-win-0.1.285.iso
