@@ -205,4 +205,24 @@ https://software.download.prss.microsoft.com/dbazure/Win11_24H2_English_x64.iso?
 * Restart Guest WINdows from power button menu while holding Shift Key
 * Should boot with TROUBLESHOOTING OPTION
    * Troubleshoot->Advanced Options->Startup Settings
-   * Select 7 'Disable driver signature enforcement' 
+   * Select 7 'Disable driver signature enforcement'
+ 
+## expect
+* ex.sh password 
+
+ex.sh password ssh anything
+
+```
+#!/usr/bin/expect
+
+set timeout 20
+
+set cmd [lrange $argv 1 end]
+set password [lindex $argv 0]
+
+eval spawn $cmd
+expect "password:"
+send "$password\r";
+interact
+```
+
