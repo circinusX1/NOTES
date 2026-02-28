@@ -226,3 +226,5 @@ send "$password\r";
 interact
 ```
 
+
+<img width="887" height="449" alt="image" src="https://github.com/user-attachments/assets/d815125c-105d-4e96-a4e4-b308aa047e6a" />
